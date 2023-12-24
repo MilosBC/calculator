@@ -1,4 +1,4 @@
-
+/*Backspace material symbol */
 .material-symbols-outlined {
   font-variation-settings:
   'FILL' 0,
@@ -6,3 +6,95 @@
   'GRAD' 0,
   'opsz' 24
 }
+
+body {
+    margin: 0;
+    padding: 0;  
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.container {
+    width: 608px;
+    background-color: black;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    height:700px;
+}
+
+button {
+    width: 137px;
+    border-radius: 50%;
+    font-size: 1.8rem;
+    border: none;
+    background-color: #2c2a2a;
+    color:#fff;
+}
+
+.button-wrapper {
+    width: 608px;
+    height: 550px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 11px;
+    position: relative;
+    top: 25px;
+    left:13px;
+}
+.display {
+   display: block;
+  height: 100px;
+   width: 100%;
+   font-size: 6.9rem;
+   text-align: right;
+   background-color: black;
+   color: #fff;
+   padding-right: 20px;
+   
+}
+
+.operation {
+    background-color: #e72121d2;
+    color:#fff;
+}
+
+.function {
+background-color: #a1a0a0;
+color: black;
+}
+
+.number:hover {
+    background-color: #fff;
+    color:#2c2a2a;
+    cursor: pointer;
+}
+
+.operation:hover {
+    background-color: #fff;
+    color:#e72121d2;
+    cursor: pointer;
+}
+
+.function:hover {
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.footer {
+    width: 400px;
+    font-size: 1.8rem;
+    display: flex;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+a:visited {
+    text-decoration: none;
+    color: black;
+}
+
+
