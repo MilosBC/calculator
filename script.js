@@ -6,8 +6,8 @@ let numberTwo;
 
 const calculator = {
 
-add: function() {
-    return a - b;
+add: function(a, b) {
+    return a + b;
 },
 
 subtract: function(a,b) {
@@ -19,8 +19,20 @@ multiply: function(a,b) {
 },
 
 divide: function(a,b) {
+
+if (b === 0) {
+    alert('Hey, no division by 0!');
+    
+} else {
     return a / b;
+    
+    }
+    
 },
+
+valueFromDisplay: '',
+
+
 
 operate: function(a,op,b) {
     let result;
@@ -39,14 +51,39 @@ operate: function(a,op,b) {
 
          case '/':
          result = this.divide(a,b);
+         if (result === undefined) {
+            return '';
+         } else {
          return result; 
+         }
 
          default:
          return 'Invalid operator';
 
     }
+},
+getResult: function() {
+ this.valueFromDisplay = display.value;
+ let values = this.valueFromDisplay.split(' ');
+ console.log(values);
+  
+
+
+ numberOne = Number(values[0]);
+  console.log(typeof numberOne);
+ operator = String(values[1]);
+ console.log(`Operator type: ${typeof operator}`);
+
+ 
+ numberTwo = Number(values[2]);
+  console.log(typeof numberTwo);
+
+ let operateResult = this.operate(numberOne, operator, numberTwo);
+ return operateResult;
 }
 };
+
+
 
 
 
@@ -64,6 +101,7 @@ operate: function(a,op,b) {
 console.log(calculator.operate(30, '*', 3));
 
 const display = document.querySelector('.display');
+
 
 // Calculator numbers
 
@@ -111,13 +149,19 @@ operators.forEach((operator, index) => {
         let operatorIndex = operators.indexOf(this);
 
         if (operatorIndex === 0) {
-            display.value += '/';
+            display.value += ' / ';
         } else if (operatorIndex === 1) {
-            display.value += '*';
+            display.value += ' * ';
         } else if (operatorIndex === 2) {
-            display.value += '-';
+            display.value += ' - ';
         } else if (operatorIndex === 3) {
-            display.value += '+';
+            display.value += ' + ';
+        } else if (operatorIndex === 4) {
+            if (display.value === '') {
+                alert('Please enter a valid input!');
+            } else {
+            display.value = calculator.getResult();
+            }
         }
     })
 
