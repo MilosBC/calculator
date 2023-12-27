@@ -149,13 +149,37 @@ operators.forEach((operator, index) => {
         let operatorIndex = operators.indexOf(this);
 
         if (operatorIndex === 0) {
+            calculator.valueFromDisplay = display.value;
+            let currentValues = calculator.valueFromDisplay.split(' ');
+            if (currentValues.length === 3) {
+                display.value = calculator.getResult();
+            } 
             display.value += ' / ';
+        
         } else if (operatorIndex === 1) {
+            calculator.valueFromDisplay = display.value;
+            let currentValues = calculator.valueFromDisplay.split(' ');
+            if (currentValues.length === 3) {
+                display.value = calculator.getResult();
+            } 
             display.value += ' * ';
+        
         } else if (operatorIndex === 2) {
+            calculator.valueFromDisplay = display.value;
+            let currentValues = calculator.valueFromDisplay.split(' ');
+            if (currentValues.length === 3) {
+                display.value = calculator.getResult();
+            } 
             display.value += ' - ';
+        
         } else if (operatorIndex === 3) {
+            calculator.valueFromDisplay = display.value;
+            let currentValues = calculator.valueFromDisplay.split(' ');
+            if (currentValues.length === 3) {
+                display.value = calculator.getResult();
+            } 
             display.value += ' + ';
+        
         } else if (operatorIndex === 4) {
             if (display.value === '') {
                 alert('Please enter a valid input!');
