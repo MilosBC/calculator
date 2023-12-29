@@ -4,6 +4,8 @@ let numberOne;
 let operator;
 let numberTwo;
 
+const display = document.querySelector('.display');
+
 
 
 
@@ -24,7 +26,7 @@ multiply: function(a,b) {
 divide: function(a,b) {
 
 if (b === 0) {
-    alert('LOL, nice try!');
+    alert('LOL, nice try');
     
     
 } else {
@@ -56,7 +58,7 @@ operate: function(a,op,b) {
          case '/':
          result = this.divide(a,b);
          if (result === undefined) {
-            return '';
+            return 0;
          } else {
          return Number.isInteger(result) ? result: +result.toFixed(2); 
          }
@@ -91,7 +93,7 @@ getResult: function() {
 
 
 
-const display = document.querySelector('.display');
+
 
 let displayValueOne = '';
 let displayOperator = '';
@@ -429,6 +431,16 @@ calcFunctions.forEach((calcFunction, index) => {
  
                 } 
             
+        } else if (functionIndex === 2) {
+            if (displayValueOne !== '' && !(plus.classList.contains('active') || minus.classList.contains('active') || multiplication.classList.contains('active') || division.classList.contains('active') )) {
+                displayValueOne = '';
+                display.value = displayValueOne;
+            }
+
+            if (displayValueTwo !== '' && (plus.classList.contains('active') || minus.classList.contains('active') || multiplication.classList.contains('active') || division.classList.contains('active') )) {
+                displayValueTwo = '';
+                display.value = displayValueTwo;
+            }
         }
     })
 
