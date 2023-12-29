@@ -313,7 +313,15 @@ operators.forEach((operator, index) => {
                 displayValueOne = '';
                 displayOperator = '';
                 displayValueTwo = '';
-                division.classList.remove('active');
+                if (plus.classList.contains('active')) {
+                    plus.classList.remove('active');
+                  } else if (minus.classList.contains('active')) {
+                    minus.classList.remove('active');
+                  } else if (multiplication.classList.contains('active')) {
+                    multiplication.classList.remove('active');
+                  } else if (division.classList.contains('active')) {
+                    division.classList.remove('active');
+                  }
             } else {
           
             displayOperator += ' / ';
@@ -333,7 +341,15 @@ operators.forEach((operator, index) => {
                 displayValueOne = '';
                 displayOperator = '';
                 displayValueTwo = '';
-                multiplication.classList.remove('active');
+                if (plus.classList.contains('active')) {
+                    plus.classList.remove('active');
+                  } else if (minus.classList.contains('active')) {
+                    minus.classList.remove('active');
+                  } else if (multiplication.classList.contains('active')) {
+                    multiplication.classList.remove('active');
+                  } else if (division.classList.contains('active')) {
+                    division.classList.remove('active');
+                  }
             } else {
           
             displayOperator += ' * ';
@@ -353,7 +369,15 @@ operators.forEach((operator, index) => {
                 displayValueOne = '';
                 displayOperator = '';
                 displayValueTwo = '';
-                minus.classList.remove('active');
+                if (plus.classList.contains('active')) {
+                    plus.classList.remove('active');
+                  } else if (minus.classList.contains('active')) {
+                    minus.classList.remove('active');
+                  } else if (multiplication.classList.contains('active')) {
+                    multiplication.classList.remove('active');
+                  } else if (division.classList.contains('active')) {
+                    division.classList.remove('active');
+                  }
             } else {
           
             displayOperator += ' - ';
@@ -372,7 +396,15 @@ operators.forEach((operator, index) => {
                 displayValueOne = '';
                 displayOperator = '';
                 displayValueTwo = '';
-                plus.classList.remove('active');
+                if (plus.classList.contains('active')) {
+                    plus.classList.remove('active');
+                  } else if (minus.classList.contains('active')) {
+                    minus.classList.remove('active');
+                  } else if (multiplication.classList.contains('active')) {
+                    multiplication.classList.remove('active');
+                  } else if (division.classList.contains('active')) {
+                    division.classList.remove('active');
+                  }
             } else {
           
             displayOperator += ' + ';

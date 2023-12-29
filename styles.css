@@ -103,5 +103,13 @@ a:visited {
     color:#e72121d2;
 }
 
+.fa-github {
+    transition: transform .5s ease-in-out;
+}
+
+.fa-github:hover {
+    transform: rotate(360deg);
+}
+
 
 
