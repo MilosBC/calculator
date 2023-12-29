@@ -26,6 +26,7 @@ divide: function(a,b) {
 if (b === 0) {
     alert('LOL, nice try!');
     
+    
 } else {
     return a / b;
     
@@ -61,7 +62,7 @@ operate: function(a,op,b) {
          }
 
          default:
-         return 'Invalid operator';
+         return "Inoperable!";
 
     }
 },
@@ -391,6 +392,44 @@ calcFunctions.forEach((calcFunction, index) => {
                 division.classList.remove('active');
               }
         } 
+        
+
+        else if (functionIndex === 1) {
+            
+            let negativePrefix = '-';
+               if (!displayValueOne.includes('-') && displayValueTwo === '') {
+              let  transformedNumber =  negativePrefix.concat(displayValueOne);
+                
+
+                displayValueOne = transformedNumber;
+                display.value = displayValueOne;
+
+                
+               } else if (displayValueOne.includes('-') && displayValueTwo === '') {
+               let  transformedNumber = displayValueOne.substring(1);
+                console.log(transformedNumber);
+                displayValueOne = transformedNumber;
+                display.value = displayValueOne;
+
+               }
+
+               else if (!displayValueTwo.includes('-') && displayValueOne !== '') {
+                let transformedNumber =  negativePrefix.concat(displayValueTwo);
+                 
+ 
+                 displayValueTwo = transformedNumber;
+                 display.value = displayValueTwo;
+ 
+                 
+                } else if (displayValueTwo.includes('-') && displayValueOne !== '') {
+                 let transformedNumber = displayValueTwo.substring(1);
+                 console.log(transformedNumber);
+                 displayValueTwo = transformedNumber;
+                 display.value = displayValueTwo;
+ 
+                } 
+            
+        }
     })
 
 })
