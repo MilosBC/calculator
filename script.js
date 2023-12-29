@@ -45,15 +45,15 @@ operate: function(a,op,b) {
     switch (op) {
         case '+':
           result = this.add(a,b);
-          return result;
+          return Number.isInteger(result) ? result: +result.toFixed(2); 
          
          case '-':
          result = this.subtract(a,b);
-         return result;
+         return Number.isInteger(result) ? result: +result.toFixed(2); 
             
          case '*':
          result = this.multiply(a,b);
-         return result;
+         return Number.isInteger(result) ? result: +result.toFixed(2); 
 
          case '/':
          result = this.divide(a,b);
@@ -106,6 +106,8 @@ if (displayValueOne === '' && displayOperator === '' && displayValueTwo === '') 
 
 
 const numbers = Array.from(document.querySelectorAll('.number'));
+const decimal = document.querySelector('.decimal');
+
 
 
 console.log(numbers);
@@ -249,12 +251,50 @@ number.addEventListener('click', function() {
 
 });
 
+// reset decimal button
+
+
+
+decimal.addEventListener('click', function() {
+    
+    if (displayValueOne !== '' && displayOperator !== '') {
+        
+       console.log (decimal.disabled);
+        
+        displayValueTwo += '.';
+        
+        display.value = displayValueTwo;
+        if (displayValueTwo.includes('.')) {
+            decimal.disabled = true;
+            }
+      
+       
+     } else {
+       
+     
+       
+        displayValueOne += '.';
+        display.value = displayValueOne;
+        if (displayValueOne.includes('.')) {
+            decimal.disabled = true;
+            }
+
+            
+            
+
+        
+       
+    }
+})
+
 // Calculator operators
 const operators = Array.from(document.querySelectorAll('.operation'));
 const plus = document.querySelector('.add');
 const minus = document.querySelector('.subtract');
 const multiplication = document.querySelector('.multiply');
 const division = document.querySelector('.divide');
+
+
 
 console.log(operators);
 
@@ -263,6 +303,7 @@ operators.forEach((operator, index) => {
         let operatorIndex = operators.indexOf(this);
       
         if (operatorIndex === 0) {
+            decimal.disabled = false;
             if (displayValueOne === '') {
                 displayValueOne = display.value;
             }
@@ -282,7 +323,7 @@ operators.forEach((operator, index) => {
             
         
         } else if (operatorIndex === 1) {
-            
+            decimal.disabled = false;
             if (displayValueOne === '') {
                 displayValueOne = display.value;
             }
@@ -302,7 +343,7 @@ operators.forEach((operator, index) => {
             
         
         } else if (operatorIndex === 2) {
-            
+            decimal.disabled = false;
             if (displayValueOne === '') {
                 displayValueOne = display.value;
             }
@@ -321,7 +362,7 @@ operators.forEach((operator, index) => {
            
         
         } else if (operatorIndex === 3) {
-
+            decimal.disabled = false;
             if (displayValueOne === '') {
                 displayValueOne = display.value;
             }
