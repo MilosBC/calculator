@@ -6,12 +6,29 @@ let numberTwo;
 
 const display = document.querySelector('.display');
 
+let displayValueOne = '';
+let displayOperator = '';
+let displayValueTwo = '';
+
+const numbers = Array.from(document.querySelectorAll('.number'));
+const decimal = document.querySelector('.decimal');
+
+const operators = Array.from(document.querySelectorAll('.operation'));
+const plus = document.querySelector('.add');
+const minus = document.querySelector('.subtract');
+const multiplication = document.querySelector('.multiply');
+const division = document.querySelector('.divide');
+
+const calcFunctions = Array.from(document.querySelectorAll('.function'));
+
+
 
 
 
 const calculator = {
 
 add: function(a, b) {
+    
     return a + b;
 },
 
@@ -42,10 +59,17 @@ valueFromDisplay: '',
 
 operate: function(a,op,b) {
     let result;
+
+
     switch (op) {
         case '+':
           result = this.add(a,b);
+
+      
+        
           return Number.isInteger(result) ? result: +result.toFixed(2); 
+          
+          
          
          case '-':
          result = this.subtract(a,b);
@@ -72,45 +96,40 @@ operate: function(a,op,b) {
 getResult: function() {
  this.valueFromDisplay = displayValueOne.concat(displayOperator, displayValueTwo);
  let values = this.valueFromDisplay.split(' ');
- console.log(values);
-  
-
+ 
 
  numberOne = Number(values[0]);
   
- operator = String(values[1]);
+ operator = values[1];
  
 
  
  numberTwo = Number(values[2]);
+
+
   
 
  let operateResult = this.operate(numberOne, operator, numberTwo);
+
+
+
+
  return operateResult;
+ 
+
+
 }
 };
 
 
 
+// Calculator logic
 
-
-
-let displayValueOne = '';
-let displayOperator = '';
-let displayValueTwo = '';
 if (displayValueOne === '' && displayOperator === '' && displayValueTwo === '') {
     display.value = 0;
 }
 
 
-
-
-const numbers = Array.from(document.querySelectorAll('.number'));
-const decimal = document.querySelector('.decimal');
-
-
-
-console.log(numbers);
 
 numbers.forEach((number, index) => {
 number.addEventListener('click', function() {
@@ -251,16 +270,14 @@ number.addEventListener('click', function() {
 
 });
 
-// reset decimal button
+
 
 
 
 decimal.addEventListener('click', function() {
     
     if (displayValueOne !== '' && displayOperator !== '') {
-        
-       console.log (decimal.disabled);
-        
+           
         displayValueTwo += '.';
         
         display.value = displayValueTwo;
@@ -287,16 +304,29 @@ decimal.addEventListener('click', function() {
     }
 })
 
-// Calculator operators
-const operators = Array.from(document.querySelectorAll('.operation'));
-const plus = document.querySelector('.add');
-const minus = document.querySelector('.subtract');
-const multiplication = document.querySelector('.multiply');
-const division = document.querySelector('.divide');
 
 
 
-console.log(operators);
+
+function resetOperators() {
+    
+       displayOperator = '';
+
+          if (plus.classList.contains('active')) {
+                    plus.classList.remove('active');
+                  } else if (minus.classList.contains('active')) {
+                    minus.classList.remove('active');
+                  } else if (multiplication.classList.contains('active')) {
+                    multiplication.classList.remove('active');
+                  } else if (division.classList.contains('active')) {
+                    division.classList.remove('active');
+                  }
+    
+}
+
+
+
+
 
 operators.forEach((operator, index) => {
     operator.addEventListener('click', function() {
@@ -323,7 +353,9 @@ operators.forEach((operator, index) => {
                     division.classList.remove('active');
                   }
             } else {
-          
+                  if (displayOperator !== '/') {
+              resetOperators();
+            }
             displayOperator += ' / ';
             division.classList.add('active');
         }
@@ -351,6 +383,9 @@ operators.forEach((operator, index) => {
                     division.classList.remove('active');
                   }
             } else {
+                      if (displayOperator !== '*') {
+              resetOperators();
+            }
           
             displayOperator += ' * ';
             multiplication.classList.add('active');
@@ -364,32 +399,7 @@ operators.forEach((operator, index) => {
                 displayValueOne = display.value;
             }
 
-            if (displayValueOne !== '' && displayOperator !== '' && displayValueTwo !== '') {
-                display.value = calculator.getResult();
-                displayValueOne = '';
-                displayOperator = '';
-                displayValueTwo = '';
-                if (plus.classList.contains('active')) {
-                    plus.classList.remove('active');
-                  } else if (minus.classList.contains('active')) {
-                    minus.classList.remove('active');
-                  } else if (multiplication.classList.contains('active')) {
-                    multiplication.classList.remove('active');
-                  } else if (division.classList.contains('active')) {
-                    division.classList.remove('active');
-                  }
-            } else {
-          
-            displayOperator += ' - ';
-            minus.classList.add('active');
-        }
-           
-        
-        } else if (operatorIndex === 3) {
-            decimal.disabled = false;
-            if (displayValueOne === '') {
-                displayValueOne = display.value;
-            }
+         
 
             if (displayValueOne !== '' && displayOperator !== '' && displayValueTwo !== '') {
                 display.value = calculator.getResult();
@@ -406,6 +416,43 @@ operators.forEach((operator, index) => {
                     division.classList.remove('active');
                   }
             } else {
+
+                 if (displayOperator !== '-') {
+              resetOperators();
+            }
+            
+            displayOperator += ' - ';
+            minus.classList.add('active');
+        }
+           
+        
+        } else if (operatorIndex === 3) {
+            decimal.disabled = false;
+            if (displayValueOne === '') {
+                displayValueOne = display.value;
+            }
+
+        
+
+            if (displayValueOne !== '' && displayOperator !== '' && displayValueTwo !== '') {
+                display.value = calculator.getResult();
+                displayValueOne = '';
+                displayOperator = '';
+                displayValueTwo = '';
+                if (plus.classList.contains('active')) {
+                    plus.classList.remove('active');
+                  } else if (minus.classList.contains('active')) {
+                    minus.classList.remove('active');
+                  } else if (multiplication.classList.contains('active')) {
+                    multiplication.classList.remove('active');
+                  } else if (division.classList.contains('active')) {
+                    division.classList.remove('active');
+                  }
+            } else {
+
+                 if (displayOperator !== '+') {
+              resetOperators();
+            }
           
             displayOperator += ' + ';
             plus.classList.add('active');
@@ -414,17 +461,20 @@ operators.forEach((operator, index) => {
         
         } else if (operatorIndex === 4) {
             
-            console.log(calculator.valueFromDisplay);
-            if (displayValueOne === '' && displayValueTwo === '' && displayOperator === '') {
+            
+ if (displayValueOne === '' && displayValueTwo === '' && displayOperator === '') {
                 alert('Please enter a valid input!');
             } else {
             display.value = calculator.getResult();
+            if (display.value === 'NaN') {
+                display.value = 'Inoperable!';
+            }
             displayValueOne = '';
             displayOperator = '';
             displayValueTwo = '';
             
             
-           // calculator.valueFromDisplay += display.value; 
+           
               if (plus.classList.contains('active')) {
                 plus.classList.remove('active');
               } else if (minus.classList.contains('active')) {
@@ -444,8 +494,8 @@ operators.forEach((operator, index) => {
 
 // Calculator functions
 
-const calcFunctions = Array.from(document.querySelectorAll('.function'));
-console.log(calcFunctions);
+
+
 
 calcFunctions.forEach((calcFunction, index) => {
     calcFunction.addEventListener('click', function() {
@@ -482,7 +532,7 @@ calcFunctions.forEach((calcFunction, index) => {
                 
                } else if (displayValueOne.includes('-') && displayValueTwo === '') {
                let  transformedNumber = displayValueOne.substring(1);
-                console.log(transformedNumber);
+               
                 displayValueOne = transformedNumber;
                 display.value = displayValueOne;
 
@@ -498,7 +548,7 @@ calcFunctions.forEach((calcFunction, index) => {
                  
                 } else if (displayValueTwo.includes('-') && displayValueOne !== '') {
                  let transformedNumber = displayValueTwo.substring(1);
-                 console.log(transformedNumber);
+                 
                  displayValueTwo = transformedNumber;
                  display.value = displayValueTwo;
  
